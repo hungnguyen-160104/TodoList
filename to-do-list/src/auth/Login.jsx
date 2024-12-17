@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './Login.css';
 import hinhNen from './hust1.png';
 
 const Login = () => {
-  // isLogin: đang ở trang Login hay Register
-  // isReset: đang ở trang Quên mật khẩu
+  const navigate = useNavigate(); // Hook điều hướng giữa các trang
+
   const [isLogin, setIsLogin] = useState(true);
   const [isReset, setIsReset] = useState(false);
 
@@ -25,9 +26,8 @@ const Login = () => {
   };
 
   const handleToggle = () => {
-    // Chuyển giữa Login và Register
     setIsLogin(!isLogin);
-    setIsReset(false); // trở về false để không ở chế độ quên password
+    setIsReset(false); // Không ở chế độ quên mật khẩu nữa
     resetForm();
   };
 
@@ -39,7 +39,6 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isReset) {
-      // Xử lý quên mật khẩu
       console.log('Quên mật khẩu:', formData.email);
       alert('Email reset link has been sent (demo).');
       setIsReset(false);
@@ -51,6 +50,11 @@ const Login = () => {
     if (isLogin) {
       // Xử lý đăng nhập
       console.log('Đăng nhập:', formData.email, formData.password);
+      if (formData.email === '123@123' && formData.password === '123') {        
+        navigate('/dashboard'); // Điều hướng đến trang Dashboard
+      } else {
+        alert('Email hoặc mật khẩu không chính xác!');
+      }
     } else {
       // Xử lý đăng ký
       if (formData.password !== formData.confirmPassword) {
@@ -58,6 +62,9 @@ const Login = () => {
         return;
       }
       console.log('Đăng ký:', formData.username, formData.email, formData.password);
+      alert('Đăng ký thành công! Bây giờ bạn có thể đăng nhập.');
+      setIsLogin(true);
+      resetForm();
     }
   };
 
@@ -76,21 +83,19 @@ const Login = () => {
   let buttonText = 'Đăng nhập';
   let bottomText = (
     <p className="register-text">
-      Bạn có tài khoản chưa ? <a href="#" onClick={handleToggle}>Đăng ký</a>
+      Bạn có tài khoản chưa? <a href="#" onClick={handleToggle}>Đăng ký</a>
     </p>
   );
 
   if (!isLogin && !isReset) {
-    // Register mode
     title = 'Đăng ký';
     buttonText = 'Đăng ký';
     bottomText = (
       <p className="register-text">
-        Bạn có tài khoản rồi à ? <a href="#" onClick={handleToggle}>Đăng nhập</a>
+        Bạn có tài khoản rồi à? <a href="#" onClick={handleToggle}>Đăng nhập</a>
       </p>
     );
   } else if (isReset) {
-    // Forgot Password mode
     title = 'Quên mật khẩu';
     buttonText = 'Đặt lại mật khẩu';
     bottomText = (
@@ -107,7 +112,11 @@ const Login = () => {
         backgroundImage: `url(${hinhNen})`, 
         backgroundPosition: 'center', 
         backgroundSize: 'cover', 
-        backgroundRepeat: 'no-repeat' 
+        backgroundRepeat: 'no-repeat',
+        minHeight: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
       }}
     >
       <div className="login-container">
@@ -116,7 +125,6 @@ const Login = () => {
           {/* Register mode: thêm trường username */}
           {!isLogin && !isReset && (
             <div className="input-group">
-              
               <input
                 type="text"
                 name="username"
@@ -131,7 +139,6 @@ const Login = () => {
           {/* Forgot Password mode: chỉ cần email */}
           {(isReset || !isLogin) && (
             <div className="input-group">
-              
               <input
                 type="email"
                 name="email"
@@ -146,7 +153,6 @@ const Login = () => {
           {/* Login mode: hiển thị email */}
           {isLogin && !isReset && (
             <div className="input-group">
-              
               <input
                 type="email"
                 name="email"
@@ -161,14 +167,13 @@ const Login = () => {
           {/* Nếu không phải reset thì có password */}
           {!isReset && (
             <div className="input-group">
-              
               <input
                 type="password"
                 name="password"
                 placeholder="Mật khẩu"
                 value={formData.password}
                 onChange={handleChange}
-                required={!isReset}
+                required
               />
             </div>
           )}
@@ -176,7 +181,6 @@ const Login = () => {
           {/* Register mode: confirm password */}
           {!isLogin && !isReset && (
             <div className="input-group">
-              
               <input
                 type="password"
                 name="confirmPassword"
@@ -188,7 +192,7 @@ const Login = () => {
             </div>
           )}
 
-          {/* Chỉ hiển thị Remember me và Forgot password khi ở chế độ Login */}
+          {/* Remember me và Forgot password */}
           {isLogin && !isReset && (
             <div className="options">
               <label className="remember-me">
@@ -196,7 +200,7 @@ const Login = () => {
                 <span>Nhớ</span>
               </label>
               <a href="#" className="forgot-password" onClick={handleForgotPassword}>
-                Quên mật khẩu à ?
+                Quên mật khẩu à?
               </a>
             </div>
           )}

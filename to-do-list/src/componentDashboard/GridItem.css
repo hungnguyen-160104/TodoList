@@ -1,0 +1,42 @@
+.grid-item {
+  background-color: #e3f2fd;
+  border-radius: 8px;
+  height: 100px; /* Chiều cao cố định */
+  width: 100%; /* Chiều rộng tự động trong grid */
+  display: flex;
+  justify-content: space-between; /* Căn chỉnh giữa nội dung và nút */
+  align-items: center;
+  padding: 10px; /* Thêm padding để có khoảng trống */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+}
+
+.grid-item:hover {
+  background-color: #bbdefb;
+  transform: scale(1.02);
+}
+
+.grid-item input {
+  width: 90%;
+  border: 2px solid #42a5f5;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  text-align: center;
+  outline: none;
+}
+
+.grid-item .edit-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.grid-item .edit-button:hover {
+  background-color: #90caf9;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}

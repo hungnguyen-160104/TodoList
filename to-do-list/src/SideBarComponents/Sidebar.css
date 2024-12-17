@@ -1,0 +1,57 @@
+.sidebar {
+  width: 250px;
+  background-color: #fff;
+  border-right: 1px solid #e0e0e0;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between; /* Tên bên trái, icon bên phải */
+  align-items: center;
+  padding: 10px;
+  margin: 5px 0;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.menu-item:hover {
+  background-color: #f5f5f5;
+}
+
+.item-name {
+  flex-grow: 1;
+}
+
+.icon-group {
+  display: flex;
+  gap: 5px;
+}
+
+.add-button {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  padding: 10px;
+  color: #1976d2;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.add-button:hover {
+  background-color: #e3f2fd;
+}
+
+.add-button svg {
+  margin-right: 8px;
+}
