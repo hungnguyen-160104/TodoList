@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import Sidebar from "../SideBarComponents/Sidebar";
 import WeekdaysBar from "../componentDashboard/WeekdaysBar";
 import SearchBar from "../componentDashboard/SearchBar";
@@ -7,6 +8,13 @@ import ActionButtons from "../componentDashboard/ActionButtons";
 import GridContent from "../componentDashboard/GridContent";
 
 const DashboardLayout = ({ boxes, onAddBox, onRemoveBox, onUpdateBoxName }) => {
+  const navigate = useNavigate(); // Hook để điều hướng
+
+  // Hàm xử lý khi click vào một ô
+  const handleBoxClick = (id) => {
+    navigate(`/todo/${id}`); // Điều hướng đến ToDoListPage tương ứng
+  };
+
   return (
     <Box
       sx={{
@@ -57,7 +65,11 @@ const DashboardLayout = ({ boxes, onAddBox, onRemoveBox, onUpdateBoxName }) => {
           <ActionButtons onAdd={onAddBox} onRemove={onRemoveBox} />
 
           {/* Grid Content */}
-          <GridContent boxes={boxes} onUpdateBoxName={onUpdateBoxName} />
+          <GridContent
+            boxes={boxes}
+            onUpdateBoxName={onUpdateBoxName}
+            onBoxClick={handleBoxClick} // Truyền hàm click xuống GridContent
+          />
         </Box>
       </Box>
     </Box>

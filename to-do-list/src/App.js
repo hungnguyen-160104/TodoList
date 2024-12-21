@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
+import UserProfile from "./SideBarComponents/UserProfile";
+import ToDoListPage from "./ToDoListPage/ToDoListPage";
 
 // Import các component chính
 import Header from "./components/Header";
@@ -73,6 +75,12 @@ function App() {
             />
           }
         />
+
+        {/* Trang Cá Nhân */}
+        <Route path="/user-profile" element={<UserProfile />} />
+
+        {/* Trang ToDoList */}
+        <Route path="/todo/:id" element={<ToDoListPage />} />
       </Routes>
     </Router>
   );
