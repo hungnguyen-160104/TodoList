@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Box, Typography, Button } from "@mui/material";
 import { format, addDays, startOfWeek } from "date-fns";
+import styles from "./WeekdaysBar.module.css";
 
 const WeekdaysBar = () => {
   const [currentWeekStart, setCurrentWeekStart] = useState(
@@ -22,69 +22,43 @@ const WeekdaysBar = () => {
   const formatDate = (date) => format(date, "yyyy-MM-dd");
 
   return (
-    <Box
-      style={{
-        maxWidth: "400px",
-        margin: "auto",
-        boxShadow: "0px 4px 8px rgba(0,0,0,0.2)",
-        borderRadius: "8px",
-        padding: "10px",
-        backgroundColor: "#fff",
-        textAlign: "center",
-      }}
-    >
+    <div className={styles.weekdaysBarContainer}>
       {/* Nút chuyển tuần */}
-      <Box display="flex" justifyContent="space-between" mb={2}>
-        <Button
-          variant="outlined"
+      <div className={styles.navigation}>
+        <button
+          className={styles.navigationButton}
           onClick={() => navigateWeek(-1)}
-          style={{ textTransform: "none" }}
         >
           Trước
-        </Button>
-        <Typography variant="h6">
+        </button>
+        <h6 className={styles.navigationTitle}>
           Tuần {format(currentWeekStart, "dd/MM/yyyy")} -{" "}
           {format(addDays(currentWeekStart, 6), "dd/MM/yyyy")}
-        </Typography>
-        <Button
-          variant="outlined"
+        </h6>
+        <button
+          className={styles.navigationButton}
           onClick={() => navigateWeek(1)}
-          style={{ textTransform: "none" }}
         >
           Sau
-        </Button>
-      </Box>
+        </button>
+      </div>
 
       {/* Lịch ngang */}
-      <Box display="flex" justifyContent="space-around" mb={2}>
+      <div className={styles.weekdays}>
         {weekDays.map((day) => (
-          <Box
+          <div
             key={day}
+            className={`${styles.weekday} ${
+              formatDate(selectedDate) === formatDate(day) ? styles.weekdayActive : ""
+            }`}
             onClick={() => setSelectedDate(day)}
-            sx={{
-              textAlign: "center",
-              cursor: "pointer",
-              padding: "8px",
-              borderRadius: "50%",
-              backgroundColor:
-                formatDate(selectedDate) === formatDate(day)
-                  ? "#1976d2"
-                  : "#e0e0e0",
-              color:
-                formatDate(selectedDate) === formatDate(day)
-                  ? "#fff"
-                  : "#000",
-              transition: "background-color 0.3s",
-            }}
           >
-            <Typography variant="body2">
-              {format(day, "E")} {/* Hiển thị Thứ (Sun, Mon...) */}
-            </Typography>
-            <Typography variant="h6">{format(day, "dd")}</Typography>
-          </Box>
+            <p className={styles.weekdayText}>{format(day, "E")}</p>
+            <p className={styles.weekdayDate}>{format(day, "dd")}</p>
+          </div>
         ))}
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 };
 

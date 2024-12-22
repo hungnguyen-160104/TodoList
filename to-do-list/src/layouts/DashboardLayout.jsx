@@ -1,11 +1,12 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../SideBarComponents/Sidebar";
 import WeekdaysBar from "../componentDashboard/WeekdaysBar";
 import SearchBar from "../componentDashboard/SearchBar";
 import ActionButtons from "../componentDashboard/ActionButtons";
 import GridContent from "../componentDashboard/GridContent";
+import "./DashboardLayout.css"; // Import file CSS
 
 const DashboardLayout = ({ boxes, onAddBox, onRemoveBox, onUpdateBoxName }) => {
   const navigate = useNavigate(); // Hook để điều hướng
@@ -16,31 +17,15 @@ const DashboardLayout = ({ boxes, onAddBox, onRemoveBox, onUpdateBoxName }) => {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        minHeight: "100vh",
-        backgroundColor: "#f0f2f5",
-      }}
-    >
+    <div className="dashboard-layout">
       {/* Sidebar */}
       <Sidebar />
 
       {/* Main Content */}
-      <Box
-        sx={{
-          flex: 1,
-          display: "flex",
-          flexDirection: "column",
-          p: 3,
-          gap: 2,
-          backgroundColor: "#fff",
-          boxShadow: 1,
-        }}
-      >
+      <div className="dashboard-content">
         {/* Header cho Dashboard */}
-        <Typography variant="h4" sx={{ fontWeight: "bold", mb: 2 }}>
-          TodoList
+        <Typography variant="h4" className="dashboard-header">
+          
         </Typography>
 
         {/* Weekdays Bar */}
@@ -50,29 +35,19 @@ const DashboardLayout = ({ boxes, onAddBox, onRemoveBox, onUpdateBoxName }) => {
         <SearchBar />
 
         {/* Actions và Grid Content */}
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-            p: 2,
-            backgroundColor: "#fafafa",
-            borderRadius: 2,
-            boxShadow: 1,
-          }}
-        >
+        <div className="dashboard-actions">
           {/* Action Buttons */}
           <ActionButtons onAdd={onAddBox} onRemove={onRemoveBox} />
 
           {/* Grid Content */}
           <GridContent
             boxes={boxes}
-            onUpdateBoxName={onUpdateBoxName}
+            onUpdateBoxName={onUpdateBoxName} // Truyền hàm cập nhật tên box
             onBoxClick={handleBoxClick} // Truyền hàm click xuống GridContent
           />
-        </Box>
-      </Box>
-    </Box>
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -1,7 +1,8 @@
 import React from "react";
 import "./ProfileHeader.css";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Badge } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import NotificationsIcon from "@mui/icons-material/Notifications"; // Import biểu tượng thông báo
 
 const ProfileHeader = () => {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const ProfileHeader = () => {
         alignItems: "center",
         padding: "10px",
         borderBottom: "1px solid #ddd",
+        position: "relative",
       }}
     >
       {/* Avatar */}
@@ -54,6 +56,17 @@ const ProfileHeader = () => {
       >
         Trang cá nhân
       </Typography>
+
+      {/* Biểu tượng thông báo */}
+      <Badge
+        badgeContent={3} // Số lượng thông báo (có thể thay đổi động)
+        color="error"
+        style={{
+          marginLeft: "auto",
+        }}
+      >
+        <NotificationsIcon style={{ color: "#666" }} />
+      </Badge>
     </Box>
   );
 };

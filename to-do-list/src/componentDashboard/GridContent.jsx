@@ -18,7 +18,7 @@ const GridContent = ({ boxes, onUpdateBoxName, onBoxClick }) => {
           key={box.id}
           id={box.id}
           name={box.name}
-          onUpdateName={onUpdateBoxName}
+          onUpdateName={onUpdateBoxName} // Truyền hàm cập nhật tên cho GridItem
           onClick={() => onBoxClick(box.id)} // Gọi hàm điều hướng khi click vào ô
         />
       ))}

@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import "./Sidebar.css";
-import { Box, Typography, IconButton } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
-import CloseIcon from "@mui/icons-material/Close";
-import EditIcon from "@mui/icons-material/Edit";
-import ProfileHeader from "./ProfileHeader"; // Import ProfileHeader
+import ProfileHeader from "./ProfileHeader";
+import GroupTasks from "../Group/GroupTasks";
 
 const Sidebar = () => {
   const [items, setItems] = useState([{ name: "Công việc nhóm", editable: false }]);
@@ -38,46 +35,26 @@ const Sidebar = () => {
   };
 
   return (
-    <Box className="sidebar">
-      <ProfileHeader /> {/* Profile Header component */}
+    <div className="sidebar">
+      <ProfileHeader />
 
-      <Box className="menu">
+      <div className="menu">
         {items.map((item, index) => (
-          <Box key={index} className="menu-item">
-            {item.editable ? (
-              <input
-                value={item.name}
-                onChange={(e) => updateItemName(index, e.target.value)}
-                onBlur={() => toggleEdit(index)}
-                autoFocus
-              />
-            ) : (
-              <Typography className="item-name" onClick={() => toggleEdit(index)}>
-                {item.name}
-              </Typography>
-            )}
-
-            {/* Icons */}
-            {item.name !== "Công việc nhóm" && (
-              <Box className="icon-group">
-                <IconButton size="small" onClick={() => toggleEdit(index)}>
-                  <EditIcon fontSize="small" />
-                </IconButton>
-                <IconButton size="small" onClick={() => deleteItem(index)}>
-                  <CloseIcon fontSize="small" />
-                </IconButton>
-              </Box>
-            )}
-          </Box>
+          <GroupTasks
+            key={index}
+            item={item}
+            index={index}
+            toggleEdit={toggleEdit}
+            updateItemName={updateItemName}
+            deleteItem={deleteItem}
+          />
         ))}
 
-        {/* Nút thêm mới */}
-        <Box className="add-button" onClick={addNewItem}>
-          <AddIcon />
-          <Typography>Thêm mới</Typography>
-        </Box>
-      </Box>
-    </Box>
+        <div className="add-button" onClick={addNewItem}>
+          <span>+ Thêm mới</span>
+        </div>
+      </div>
+    </div>
   );
 };
 

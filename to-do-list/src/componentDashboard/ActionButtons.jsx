@@ -1,20 +1,25 @@
-import React from 'react';
-import './ActionButtons.css'; // Import CSS
-import { Box, IconButton } from '@mui/material';
-import { Add, Remove, DragIndicator } from '@mui/icons-material';
+import React from "react";
+import styles from "./ActionButtons.module.css"; // Import CSS module
+import { Box } from "@mui/material";
+import { Add, Remove, DragIndicator } from "@mui/icons-material";
 
 const ActionButtons = ({ onAdd, onRemove }) => {
   return (
-    <Box className="action-buttons">
-      <IconButton className="icon-button" onClick={onAdd}>
+    <Box className={styles["action-buttons"]}>
+      <button
+        className={styles["icon-button"]}
+        onClick={onAdd}
+        aria-label="Add"
+      >
         <Add />
-      </IconButton>
-      <IconButton className="icon-button" onClick={onRemove}>
+      </button>
+      <button
+        className={styles["icon-button"]}
+        onClick={onRemove}
+        aria-label="Remove"
+      >
         <Remove />
-      </IconButton>
-      <IconButton className="icon-button">
-        <DragIndicator />
-      </IconButton>
+      </button>    
     </Box>
   );
 };

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import UserProfile from "./SideBarComponents/UserProfile";
-import ToDoListPage from "./ToDoListPage/ToDoListPage";
 
 // Import các component chính
 import Header from "./components/Header";
@@ -16,11 +14,21 @@ import Login from "./auth/Login";
 // Import Dashboard Layout
 import DashboardLayout from "./layouts/DashboardLayout";
 
+// Import Group Components
+import GroupTasks from "./Group/GroupTasks";
+import GroupDetail from "./Group/GroupDetail";
+import AddTask from "./Group/AddTask";
+
+// Import Trang Cá Nhân và ToDoListPage
+import UserProfile from "./SideBarComponents/UserProfile";
+import ToDoListPage from "./ToDoListPage/ToDoListPage";
+
 function App() {
+  // State quản lý danh sách các ô
   const [boxes, setBoxes] = useState([
     { id: 1, name: "Ô 1" },
     { id: 2, name: "Ô 2" },
-  ]); // State quản lý danh sách ô
+  ]);
 
   // Thêm ô mới
   const addBox = () => {
@@ -42,6 +50,7 @@ function App() {
     );
   };
 
+  // Điều hướng giữa các trang
   return (
     <Router>
       <Routes>
@@ -71,7 +80,7 @@ function App() {
               boxes={boxes}
               onAddBox={addBox}
               onRemoveBox={removeBox}
-              onUpdateBoxName={updateBoxName}
+              onUpdateBoxName={updateBoxName} // Truyền props để cập nhật ô
             />
           }
         />
@@ -81,6 +90,15 @@ function App() {
 
         {/* Trang ToDoList */}
         <Route path="/todo/:id" element={<ToDoListPage />} />
+
+        {/* Nhóm Công Việc */}
+        <Route path="/group/tasks" element={<GroupTasks />} />
+
+        {/* Chi Tiết Nhóm */}
+        <Route path="/group/detail" element={<GroupDetail />} />
+
+        {/* Thêm Công Việc */}
+        <Route path="/group/add-task" element={<AddTask />} />
       </Routes>
     </Router>
   );
