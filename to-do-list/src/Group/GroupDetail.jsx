@@ -30,13 +30,13 @@ const GroupDetail = () => {
         <h1 className={styles.groupDetailTitle}>Chi Tiết Nhóm</h1>
         <div className={styles.groupDetailContent}>
           <p>
-            <strong>Tên nhóm:</strong> Nhóm Công Việc
+            <strong>Tên nhóm:</strong> Nhóm 7
           </p>
           <p>
-            <strong>Mô tả:</strong> Đây là nhóm quản lý công việc cho dự án XYZ.
+            <strong>Mô tả:</strong> Đây là bài tập để gửi cô.
           </p>
           <p>
-            <strong>Ngày tạo:</strong> 22/12/2024
+            <strong>Ngày tạo:</strong> 24/12/2024
           </p>
           <p>
             <strong>Thành viên:</strong>

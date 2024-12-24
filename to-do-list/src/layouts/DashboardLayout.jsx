@@ -6,6 +6,7 @@ import WeekdaysBar from "../componentDashboard/WeekdaysBar";
 import SearchBar from "../componentDashboard/SearchBar";
 import ActionButtons from "../componentDashboard/ActionButtons";
 import GridContent from "../componentDashboard/GridContent";
+import LogoutButton from "../componentDashboard/LogoutButton"; // Import LogoutButton
 import "./DashboardLayout.css"; // Import file CSS
 
 const DashboardLayout = ({ boxes, onAddBox, onRemoveBox, onUpdateBoxName }) => {
@@ -23,6 +24,11 @@ const DashboardLayout = ({ boxes, onAddBox, onRemoveBox, onUpdateBoxName }) => {
 
       {/* Main Content */}
       <div className="dashboard-content">
+        {/* Nút Đăng xuất */}
+        <div className="logout-button-container">
+          <LogoutButton />
+        </div>
+
         {/* Header cho Dashboard */}
         <Typography variant="h4" className="dashboard-header">
           

@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 
+
+
+
+
 // Import các component chính
 import Header from "./components/Header";
 import Features from "./components/Features";
-import Testimonials from "./components/Testimonials";
+
 import CTA from "./components/CTA";
 import AboutUs from "./components/AboutUs";
 import Contact from "./components/Contact";
@@ -58,14 +62,16 @@ function App() {
         <Route
           path="/"
           element={
-            <div className="App">
-              <Header />
-              <CTA />
-              <Features />
-              <Testimonials />
-              <AboutUs />
-              <Contact />
-            </div>
+          <div
+            className="App"
+          >
+            <Header />
+            <CTA />
+            <Features />
+            <AboutUs />
+            <Contact />
+          </div>
+
           }
         />
 

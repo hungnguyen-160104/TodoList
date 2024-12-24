@@ -13,7 +13,7 @@ body {
 }
 
 header {
-  background-color: #4CAF50;
+  background-color: #e5eee5;
   color: white;
   padding: 20px;
   text-align: center;
@@ -37,7 +37,7 @@ section {
 }
 
 h2 {
-  color: #4CAF50;
+  color: #ebf3eb;
   margin-bottom: 10px;
 }
 
@@ -50,7 +50,7 @@ li {
 }
 
 button {
-  background-color: #4CAF50;
+  background-color: #ecf0ec;
   color: white;
   border: none;
   padding: 10px 15px;
@@ -60,7 +60,7 @@ button {
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #d8cccc;
 }
 
 form input, form textarea {
@@ -70,3 +70,17 @@ form input, form textarea {
   border: 1px solid #ddd;
   border-radius: 5px;
 }
+
+.App {
+  background-image: url("./phandau.jpg"); /* Đường dẫn tới ảnh */
+  background-size: cover; /* Ảnh phủ đầy không bị méo */
+  background-position: center; /* Căn giữa ảnh */
+  background-repeat: no-repeat; /* Không lặp lại */
+  min-height: 100vh; /* Chiều cao tối thiểu là 100% màn hình */
+}
+
+
+
+
+
+
